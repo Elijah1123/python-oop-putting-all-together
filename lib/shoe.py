@@ -1,0 +1,46 @@
+class Shoe:
+    def __init__(self, brand, size):
+        self.brand = brand
+        self.size = size
+        self.condition = "Used"
+
+    @property
+    def brand(self):
+        return self._brand
+
+    @brand.setter
+    def brand(self, value):
+        if isinstance(value, str) and value:
+            self._brand = value
+        else:
+            raise ValueError("Brand must be a non-empty string")
+
+    @property
+    def size(self):
+        return self._size
+
+    @size.setter
+    def size(self, value):
+        if isinstance(value, int):
+            self._size = value
+        else:
+            print("size must be an integer")  # ✅ print, don’t raise
+
+    def cobble(self):
+        self.condition = "New"
+        print("Your shoe is as good as new!")  # ✅ print, not return
+
+
+if __name__ == "__main__":
+
+    my_shoe = Shoe("Nike", 42)
+
+    print("Brand:", my_shoe.brand)
+    print("Size:", my_shoe.size)
+    print("Condition:", my_shoe.condition)
+
+    my_shoe.cobble()
+
+    print("Condition after cobbling:", my_shoe.condition)
+
+    my_shoe.size = "forty-two"
